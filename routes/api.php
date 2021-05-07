@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CustomerController;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Route::post('/neworder/{id}', [OrderController::class, 'newOrder']);
+Route::post('/updateorder/{id}', [OrderController::class, 'updateOrder']);
+Route::get('/searchorder/{orderCode}/{id}', [OrderController::class, 'searchOrder']);
+Route::get('/listorder/{id}', [OrderController::class, 'listOrder']);
